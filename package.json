@@ -15,11 +15,9 @@
     "type": "git",
     "url": "git://github.com/kmdavis/resume.git"
   },
-  "main": "app/main.js",
+  "main": "app.js",
   "devDependencies": {
-    "connect-assets": "2.3.x",
-    "express": "3.x.x",
-    "less": "1.3.x"
+    "express": "3.x.x"
   },
   "engine": {
     "node": ">=0.10.0"

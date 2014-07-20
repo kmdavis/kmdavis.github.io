@@ -1,0 +1,161 @@
+@viewport-wide:   ~"(min-width: 1024px)";
+@viewport-medium: ~"(min-width: 768px) and (max-width: 1023px)";
+@viewport-narrow: ~"(min-width: 480px) and (max-width: 767px)";
+@viewport-tiny:                          ~"(max-width: 479px)";
+
+body {
+  font-family: 'PT Sans', sans-serif;
+  margin: 0;
+
+  @media print {
+
+  }
+}
+
+.notice {
+  background-color: #d64546;
+  font-size: 24px;
+  padding: 20px;
+  text-align: center;
+}
+
+  .print-notice {
+    display: none;
+
+    @media print {
+      display: block;
+    }
+  }
+
+.h-card {
+  background-color: #ddd; // TODO: pick final color
+  position: relative;
+
+  @media @viewport-wide {
+    height: 100px;
+    padding: 20px;
+  }
+
+  @media @viewport-medium {
+    height: 100px;
+    padding: 10px;
+  }
+
+  @media @viewport-narrow {
+    height: 100px;
+    padding: 10px;
+  }
+
+  @media @viewport-tiny {
+    height: 100px;
+    padding: 5px;
+  }
+
+  .u-photo {
+    border-radius: 50%;
+    position: absolute;
+
+    @media @viewport-wide {
+      left: ~"-webkit-calc(50% - 60px)";
+      left: ~"calc(50% - 60px)";
+      top: 10px;
+      width: 120px;
+    }
+
+    @media @viewport-medium,
+           @viewport-narrow {
+      left: ~"-webkit-calc(50% - 50px)";
+      left: ~"calc(50% - 50px)";
+      top: 10px;
+      width: 100px;
+    }
+
+    @media @viewport-tiny {
+      display: none;
+    }
+  }
+
+  .p-name,
+  .p-job-title,
+  .u-impp,
+  .u-email,
+  .p-tel {
+    color: #000;
+    display: block;
+    text-decoration: none;
+    width: 50%;
+  }
+
+    .p-additional-name {
+      font-size: 0;
+      display: inline-block;
+
+      &:first-letter {
+        font-size: 16px;
+      }
+
+      &:after {
+        content: ".";
+        font-size: 16px;
+      }
+    }
+
+  .map {
+    border: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    @media @viewport-wide {
+      height: 140px;
+      width: 200px;
+    }
+
+    @media @viewport-medium,
+           @viewport-narrow,
+           @viewport-tiny {
+      display: none;
+    }
+  }
+
+  .p-adr {
+    position: absolute;
+    text-align: right;
+    top: 0;
+
+    @media @viewport-wide {
+      right: 200px;
+    }
+    @media @viewport-medium,
+           @viewport-narrow,
+           @viewport-tiny {
+      right: 0;
+    }
+  }
+
+    .p-nickname,
+    .p-country-name {
+      display: none;
+    }
+}
+
+.skills {
+
+  dd {
+    background-image: url(../img/rating_stars.png);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    height: 16px;
+    width: 94px;
+  }
+
+  .ScoreFactory(@n) when (@n > 0) {
+    dd[data-score="@{n}"] {
+      background-position: 0 @n*-22px;
+    }
+
+    .ScoreFactory(@n - 1);
+  }
+
+  .ScoreFactory(10);
+}
