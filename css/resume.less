@@ -3,13 +3,26 @@
 @viewport-narrow: ~"(min-width: 480px) and (max-width: 767px)";
 @viewport-tiny:                          ~"(max-width: 479px)";
 
-body {
+.cursive() {
+  font-family: 'Lobster', cursive;
+}
+
+.sans() {
   font-family: 'PT Sans', sans-serif;
+}
+
+body {
+  .sans();
+
   margin: 0;
 
   @media print {
 
   }
+}
+
+h1, h2, h3 {
+  .cursive();
 }
 
 .notice {
@@ -27,78 +40,9 @@ body {
     }
   }
 
-.h-card {
+.contact-info {
   background-color: #ddd; // TODO: pick final color
   position: relative;
-
-  @media @viewport-wide {
-    height: 100px;
-    padding: 20px;
-  }
-
-  @media @viewport-medium {
-    height: 100px;
-    padding: 10px;
-  }
-
-  @media @viewport-narrow {
-    height: 100px;
-    padding: 10px;
-  }
-
-  @media @viewport-tiny {
-    height: 100px;
-    padding: 5px;
-  }
-
-  .u-photo {
-    border-radius: 50%;
-    position: absolute;
-
-    @media @viewport-wide {
-      left: ~"-webkit-calc(50% - 60px)";
-      left: ~"calc(50% - 60px)";
-      top: 10px;
-      width: 120px;
-    }
-
-    @media @viewport-medium,
-           @viewport-narrow {
-      left: ~"-webkit-calc(50% - 50px)";
-      left: ~"calc(50% - 50px)";
-      top: 10px;
-      width: 100px;
-    }
-
-    @media @viewport-tiny {
-      display: none;
-    }
-  }
-
-  .p-name,
-  .p-job-title,
-  .u-impp,
-  .u-email,
-  .p-tel {
-    color: #000;
-    display: block;
-    text-decoration: none;
-    width: 50%;
-  }
-
-    .p-additional-name {
-      font-size: 0;
-      display: inline-block;
-
-      &:first-letter {
-        font-size: 16px;
-      }
-
-      &:after {
-        content: ".";
-        font-size: 16px;
-      }
-    }
 
   .map {
     border: 0;
@@ -118,18 +62,133 @@ body {
     }
   }
 
+  .qrcode {
+    border: 0;
+    left: 0;
+    position: absolute;
+    top: 0;
+
+    img {
+      height: 100%;
+    }
+
+    @media @viewport-wide {
+      height: 140px;
+      width: 140px;
+    }
+
+    @media @viewport-medium,
+           @viewport-narrow {
+      height: 120px;
+      width: 120px;
+    }
+
+    @media @viewport-tiny {
+      display: none;
+    }
+  }
+}
+
+.h-card {
+  @media @viewport-wide {
+    height: 100px;
+    padding: 15px 20px 25px 160px;
+  }
+
+  @media @viewport-medium,
+         @viewport-narrow {
+    height: 100px;
+    padding: 5px 10px 15px 130px;
+  }
+
+  @media @viewport-tiny {
+    height: 100px;
+    padding: 0 5px 10px;
+  }
+
+  .u-photo {
+    position: absolute;
+
+    @media @viewport-wide {
+      border-radius: 50%;
+      right: ~"-webkit-calc(50% - 60px)";
+      right: ~"calc(50% - 60px)";
+      top: 10px;
+      width: 120px;
+    }
+
+    @media @viewport-medium {
+      border-radius: 50%;
+      right: ~"-webkit-calc(50% - 50px)";
+      right: ~"calc(50% - 50px)";
+      top: 10px;
+      width: 100px;
+    }
+
+    @media @viewport-narrow {
+      right: 0;
+      top: 0;
+      width: 120px;
+    }
+
+    @media @viewport-tiny {
+      right: 0;
+      top: 0;
+      width: 110px;
+    }
+  }
+
+  .p-name,
+  .p-job-title {
+    .cursive();
+  }
+
+  .p-name {
+    font-size: 26px;
+  }
+
+  .p-name,
+  .p-job-title,
+  .u-impp,
+  .u-email,
+  .p-tel {
+    color: #000;
+    display: block;
+    text-decoration: none;
+    width: 50%;
+  }
+
+    .p-additional-name {
+      font-size: 0;
+      display: inline-block;
+
+      &:first-letter {
+        font-size: 26px;
+      }
+
+      &:after {
+        content: ".";
+        font-size: 26px;
+      }
+    }
+
   .p-adr {
     position: absolute;
     text-align: right;
-    top: 0;
 
     @media @viewport-wide {
-      right: 200px;
+      right: 220px;
+      top: 20px;
     }
-    @media @viewport-medium,
-           @viewport-narrow,
+
+    @media @viewport-medium {
+      right: 10px;
+      top: 10px;
+    }
+
+    @media @viewport-narrow,
            @viewport-tiny {
-      right: 0;
+      display: none;
     }
   }
 
