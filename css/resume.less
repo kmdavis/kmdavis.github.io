@@ -3,12 +3,13 @@
 @viewport-narrow: ~"(min-width: 480px) and (max-width: 767px)";
 @viewport-tiny:                          ~"(max-width: 479px)";
 
-.cursive() {
-  font-family: 'Lobster', cursive;
-}
-
 .sans() {
   font-family: 'PT Sans', sans-serif;
+}
+
+.serif() {
+  font-family: 'Josefin Slab', serif;
+  font-weight: 400;
 }
 
 body {
@@ -22,7 +23,7 @@ body {
 }
 
 h1, h2, h3 {
-  .cursive();
+  .serif();
 }
 
 .notice {
@@ -140,7 +141,7 @@ h1, h2, h3 {
 
   .p-name,
   .p-job-title {
-    .cursive();
+    .serif();
   }
 
   .p-name {
@@ -196,6 +197,22 @@ h1, h2, h3 {
     .p-country-name {
       display: none;
     }
+}
+
+.view-online-please {
+  display: none;
+
+  @media print {
+    display: block;
+  }
+}
+
+.view-source-please {
+  display: block;
+
+  @media print {
+    display: none;
+  }
 }
 
 .skills {
