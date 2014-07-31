@@ -1,10 +1,13 @@
 define(
 
 [
-  'vendor/underscore'
+  'vendor/underscore',
+  'vendor/jquery',
+  'vendor/when',
+  'vendor/handlebars'
 ],
 
-function (_) {
+function (_, $, when, handlebars) {
   'use strict';
 
   var BROWSERS = [
@@ -42,7 +45,7 @@ function (_) {
 
       // Native:
       _.any(BROWSERS, function (browser) {
-        var match = navigator.userAgent.match(browser.regex)
+        var match = navigator.userAgent.match(browser.regex);
         if (match) {
           return (parseFloat(match[1]) >= browser.minVersion);
         }
@@ -67,7 +70,7 @@ function (_) {
         if (browserSupportsColorizedLogging()) {
           var
             OBSERVED_WIDTH_IN_CHROME_36 = 719,// 756,
-            margins = (window.innerWidth - (OBSERVED_WIDTH_IN_CHROME_36)) / 2,
+            margins = (window.innerWidth - (OBSERVED_WIDTH_IN_CHROME_36) - 15) / 2,
             styles = [
               'line-height: 140px; font-family: serif; color: #000; background-color: #d64546;',
               // NOTE: these paddings/margins are optimized for Chrome only; I make no guarantees about other browsers/firebug.
@@ -76,8 +79,6 @@ function (_) {
               'font-style: italic;',
               'font-size: 20px; padding: 68px ' + margins + 'px 55px 5px; margin-right: -22px;',
             ];
-
-
 
           console.log(
             '%cHi! My name is %cKevan%c"Dizzle"%cDavis%c, and this is my Résumé',
@@ -94,6 +95,28 @@ function (_) {
     }
   }
 
+  function renderAll () {
+    when.join(
+      $.getJSON('data/resume.json'),
+      $.get('templates/resume-experiences.hbs'),
+      $.get('templates/resume-skills.hbs'),
+      $.get('templates/resume-portfolio.hbs')
+    ).then(function (results) {
+      var
+        data = results[0],
+        experiences = handlebars.compile(results[1]),
+        skills = handlebars.compile(results[2]),
+        portfolio = handlebars.compile(results[3]);
+
+      $('.experiences').html(experiences({ header: 'Experience', organizations: data.experiences }));
+      //$('.schools').html(experiences({ header: 'Education', organizations: data.schools }));
+      $('.skills').html(skills(data));
+      $('.portfolio').html(portfolio(data));
+    }).otherwise(function (err) {
+      console.error(err);
+    });
+  }
+
   /**
    * Inits the Résumé.
    *
@@ -102,6 +125,7 @@ function (_) {
    */
   function init () {
     banner();
+    renderAll();
   }
 
   return {

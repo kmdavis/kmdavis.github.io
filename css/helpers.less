@@ -1,0 +1,324 @@
+.browser-prefix(@prop, @args) {
+ -webkit-@{prop}: @args;
+ -moz-@{prop}: @args;
+ -ms-@{prop}: @args;
+ -o-@{prop}: @args;
+ @{prop}: @args;
+}
+
+.animation(@animate: none) {
+ .browser-prefix(animation, @animate);
+}
+
+// The appearance property allows you to make an element look like a standard user interface element.
+// @options: normal, icon, window, button, menu, field
+.appearance(@mode: normal) {
+ .browser-prefix(appearance, @mode);
+}
+
+// The backface-visibility property defines whether or not an element should be visible when not facing the screen.
+// This property is useful when an element is rotated, and you do not want to see its backside.
+// @ptions: visible, hidden
+.backface-visibility(@mode: hidden) {
+ .browser-prefix(backface-visibility, @mode);
+}
+
+// @options: border-box, padding-box, content-box
+.background-clip(@mode: border-box) {
+ .browser-prefix(background-clip, @mode);
+}
+
+// is anything using this?  if not, we can remove it
+.background-size(@size: auto) {
+ .browser-prefix(background-size, @size);
+}
+
+.border-radius(@radius: 0) {
+ .background-clip();
+ .browser-prefix(border-radius, @radius);
+}
+
+.border-radius(@tl, @tr, @br, @bl) {
+ .background-clip();
+ .browser-prefix(border-radius, @tl @tr @br @bl);
+}
+
+.border-radius(top,          @radius) { .border-radius(@radius, @radius, 0, 0); }
+.border-radius(bottom,       @radius) { .border-radius(0, 0, @radius, @radius); }
+.border-radius(left,         @radius) { .border-radius(0, @radius, @radius, 0); }
+.border-radius(right,        @radius) { .border-radius(@radius, 0, 0, @radius); }
+
+.border-radius(top-left, @radius) {
+ .background-clip();
+ .browser-prefix(border-top-left-radius, @radius);
+}
+
+.border-radius(top-right, @radius) {
+ .background-clip();
+ .browser-prefix(border-top-right-radius, @radius);
+}
+
+.border-radius(bottom-right, @radius) {
+ .background-clip();
+ .browser-prefix(border-bottom-right-radius, @radius);
+}
+
+.border-radius(bottom-left, @radius) {
+ .background-clip();
+ .browser-prefix(border-bottom-left-radius, @radius);
+}
+
+// The box-align property specifies how to align the child elements of a box.
+// @options: start, end, center, baseline, stretch
+.box-align(@mode: stretch) {
+ .browser-prefix(box-align, @mode);
+}
+
+// The box-direction property specifies in which direction the children of a box are displayed.
+// @options: normal, reverse, inherit
+.box-direction(@mode: reverse) {
+ .browser-prefix(box-direction, @mode);
+}
+
+// The box-flex property specifies whether the child elements of a box is flexible or inflexible in size.
+// The flexibility of the element. All flex is relative, e.g. a child with a box-flex of 2 is twice as flexible as a child with a box-flex of 1
+.box-flex(@amount: 0) {
+ .browser-prefix(box-flex, @amount);
+}
+
+// The box-flex-group property is used to assign flexible elements to flex groups.
+.box-flex-group(@number: 1) {
+ .browser-prefix(box-flex-group, @number);
+}
+
+// The box-lines property specifies whether columns will go onto a new line whenever it runs out of space in the parent box.
+// @options: single, multiple
+.box-lines(@mode: multiple) {
+ .browser-prefix(box-lines, @mode);
+}
+
+// The box-ordinal-group property specifies the display order of the child elements of a box.
+// Elements with a lower value are displayed before those with a higher value.
+// Note: The display order of the elements with the same group value depend on their source order.
+.box-ordinal-group(@number: 1) {
+ .browser-prefix(box-ordinal-group, @number);
+}
+
+// The box-orient property specifies whether the children of a box should be laid out horizontally or vertically.
+// @options: borizontal, vertical, inline-axis, block-axis
+.box-orient(@mode: block-axis) {
+ .browser-prefix(box-orient, @mode);
+}
+
+// The box-pack property specifies where child elements of a box are placed when the box is larger than the size of the children.
+// This property specifies the horizontal position in horizontal boxes, and the vertical position in vertical boxes.
+// @options: start, end, center, justify
+.box-pack(@mode: justify) {
+ .browser-prefix(box-pack, @mode);
+}
+
+.box-shadow(@boxShadow: 0 0 0 #000) {
+ .browser-prefix(box-shadow, @boxShadow);
+}
+
+// TODO: named box-shadows
+
+// @options: border-box, content-box, inherit
+.box-sizing(@mode: border-box) {
+ .browser-prefix(box-sizing, @mode);
+}
+
+// The column-count property specifies the number of columns an element should be divided into.
+.column-count(@number: auto){
+ .browser-prefix(column-count, @number);
+}
+
+// The column-fill property specifies how to fill columns, balanced or not.
+// @options: balance, auto
+.column-fill(@mode: balance) {
+ .browser-prefix(column-fill, @mode);
+}
+
+// The column-gap property specifies the gap between the columns.
+.column-gap(@gap: 1em) {
+ .browser-prefix(column-gap, @gap);
+}
+
+// The column-rule property sets the width, style, and color of the rule between columns.
+.column-rule(@width: medium, @style: none, @color: black) {
+ .browser-prefix(column-rule, @arguments);
+}
+
+// The column-span property specifies how many columns an element should span across.
+.column-span(@number: 1) {
+ .browser-prefix(column-span, @number);
+}
+
+// The column-width property specifies the width of the columns.
+// @options:
+.column-width(@width: auto) {
+ .browser-prefix(column-width, @width);
+}
+
+// The columns property is a shorthand property for setting column-width and column-count.
+// @options:
+.columns(@width: auto, @count: auto) {
+ .browser-prefix(columns, @arguments);
+}
+
+// No support for Safari 4 (-webkit-gradient(linear, ...)
+// No support for IE9 (progid:DXImageTransform.Microsoft.gradient)
+// No support for Opera 10 (svg+xml)
+.gradient(@gradient: none) {
+ background-image: -webkit-linear-gradient(@gradient);
+ background-image:    -moz-linear-gradient(@gradient);
+ background-image:     -ms-linear-gradient(@gradient);
+ background-image:      -o-linear-gradient(@gradient);
+ background-image:         linear-gradient(@gradient);
+}
+
+.gradient(horizontal, @start, @end) {
+ background: mix(@start, @end, 50);
+ .gradient(~"left, @{start}, @{end}");
+}
+
+.gradient(horizontal, @start, @middle, @end) {
+ background: mix(@start, @end, 50);
+ .gradient(~"left, @{start}, @{middle} 50%, @{end}");
+}
+
+.gradient(horizontal, @start, @middle1, @middle2, @end) {
+ background: mix(@start, @end, 50);
+ .gradient(~"left, @{start}, @{middle1} 33%, @{middle2} 67%, @{end}");
+}
+
+.gradient(horizontal, @start, @middle1, @middle2, @middle3, @end) {
+ background: mix(@start, @end, 50);
+ .gradient(~"left, @{start}, @{middle1} 25%, @{middle2} 50%, @{middle2} 75%, @{end}");
+}
+
+.gradient(vertical, @start, @end) {
+ background: mix(@start, @end, 50);
+ .gradient(~"top, @{start}, @{end}");
+}
+
+.gradient(vertical, @start, @middle, @end) {
+ background: mix(@start, @end, 50);
+ .gradient(~"top, @{start}, @{middle} 50%, @{end}");
+}
+
+.gradient(vertical, @start, @middle1, @middle2, @end) {
+ background: mix(@start, @end, 50);
+ .gradient(~"top, @{start}, @{middle1} 33%, @{middle2} 67%, @{end}");
+}
+
+.gradient(vertical, @start, @middle1, @middle2, @middle3, @end) {
+ background: mix(@start, @end, 50);
+ .gradient(~"top, @{start}, @{middle1} 25%, @{middle2} 50%, @{middle2} 75%, @{end}");
+}
+
+.gradient(radial, @x, @y, @shape, @start, @stop) {
+ background: mix(@start, @end, 50);
+ background-image: -webkit-radial-gradient(@x @y, @shape, @from, @to);
+ background-image:    -moz-radial-gradient(@x @y, @shape, @from, @to);
+ background-image:     -ms-radial-gradient(@x @y, @shape, @from, @to);
+ background-image:      -o-radial-gradient(@x @y, @shape, @from, @to); // Not implemented
+ background-image:         radial-gradient(@x @y, @shape, @from, @to);
+}
+
+//.gradient(repeating-radial, ...) // TODO
+
+//.grid* // TODO
+
+// The hanging-punctuation property specifies whether a punctuation mark may be placed outside the line box at the start or at the end of a full line of text.
+// @options: none, first, last, allow-end, force-end
+.hanging-punctuation(@mode: allow-end) {
+ .browser-prefix(hanging-punctuation, @mode);
+}
+
+//.nav // TODO
+
+.opacity(@opacity: 100) {
+ .browser-prefix(opacity, @opacity / 100);
+ filter: ~"alpha(opacity=@{opacity})"; // TODO: kill when IE8 is no longer "full" experience
+}
+
+// The punctuation-trim property specifies whether a punctuation character should be trimmed if it appears at the start or end of a line, or adjacent to another fullwidth punctuation character.
+// @options: none, start, end, allow-end, adjacent
+.punctuation-trim(@mode: allow-end) {
+ .browser-prefix(punctuation-trim, @mode);
+}
+
+// @options: none, both, horizontal, vertical
+.resizable(@direction) {
+ .browser-prefix(resize, @direction);
+ overflow: auto; // Safari fix
+}
+
+.transform(@transform: none) {
+ .browser-prefix(transform, @transform);
+}
+
+.transform(rotate, @z: 0) {
+ .transform(~"rotate(@{z}deg)");
+}
+
+.transform(rotate, @x, @y, @z) {
+ .transform(~"rotate3d(@{x}deg, @{y}deg, @{z}deg)");
+}
+
+.transform(scale, @amount: 1) {
+ .transform(scale(@amount));
+}
+
+.transform(scale, @x, @y) {
+ .transform(scale(@x, @y));
+}
+
+.transform(scale, @x, @y, @z) {
+ .transform(scale3d(@x, @y, @z));
+}
+
+.transform(skew, @x: 0, @y: 0) {
+ .transform(~"skew(@{x}deg, @{y}deg)")
+}
+
+.transform(translate, @x: 0, @y: 0) {
+ .transform(translate(@x, @y));
+}
+
+.transform(translate, @x, @y, @z) {
+ .transform(translate3d(@x, @y, @z));
+}
+
+// The transform-origin property allows you to change the position on transformed elements.
+// 2D transformed element can change the x- and y-axis of the element. 3D transformed element can also change the z-axis of the element.
+.transform-origin(@origin: center) {
+ .browser-prefix(transform-origin, @origin);
+}
+
+// The transform-style property specifies how nested elements are rendered in 3D space.
+// @options: flat, preserve-3d
+.transform-style(@style: preserve-3d) {
+ .browser-prefix(transform-stype, @style);
+}
+
+// The perspective property defines how many pixels a 3D element is placed from the view. This property allows you to change the perspective on how 3D elements are viewed.
+// When defining the perspective property for an element, it is the CHILD elements that get the perspective view, NOT the element itself.
+// Note: The perspective property only affects 3D transformed elements!
+// The perspective-origin property defines where a 3D element is based in the x- and the y-axis. This property allows you to change the bottom position of 3D elements.
+// When defining the perspective-origin property for an element, it is the CHILD elements that are positioned, NOT the element itself.
+.transform-perspective(@distance: 0, @x: 50%, @y: 50%) {
+ .browser-prefix(perspective, @distance);
+ .browser-prefix(perspective-origin, @x @y);
+}
+
+// The transition property is a shorthand property for the four transition properties:
+// transition-property, transition-duration, transition-timing-function, and transition-delay.
+.transition(@range: all, @time: 1s, @ease: ease-in-out, @delay: 0s) {
+ .browser-prefix(transition, @range @time @ease @delay);
+}
+
+.user-select(@state: none) {
+ .browser-prefix(user-select, @state);
+}

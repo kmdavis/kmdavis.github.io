@@ -1,0 +1,15 @@
+<h1>Portfolio</h1>
+<ul>
+  {{#portfolioGroups}}
+    <li class="group">
+      <h1>{{name}}</h1>
+      <ul class="sites">
+        {{#sites}}
+          <li{{#if defunct}} class="defunct"{{/if}}>
+            <a href="{{url}}" target="_new">{{name}}</a>
+          </li>
+        {{/sites}}
+      </ul>
+    </li>
+  {{/portfolioGroups}}
+</ul>

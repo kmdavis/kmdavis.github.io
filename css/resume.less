@@ -1,13 +1,30 @@
+@import "helpers.less";
+
 @viewport-wide:   ~"(min-width: 1024px)";
 @viewport-medium: ~"(min-width: 768px) and (max-width: 1023px)";
 @viewport-narrow: ~"(min-width: 480px) and (max-width: 767px)";
 @viewport-tiny:                          ~"(max-width: 479px)";
 
-.sans() {
+.clearfix () {
+  *zoom: 1;
+
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+    line-height: 0;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+.sans () {
   font-family: 'PT Sans', sans-serif;
 }
 
-.serif() {
+.serif () {
   font-family: 'Josefin Slab', serif;
   font-weight: 400;
 }
@@ -111,7 +128,7 @@ h1, h2, h3 {
     position: absolute;
 
     @media @viewport-wide {
-      border-radius: 50%;
+      .border-radius(50%);
       right: ~"-webkit-calc(50% - 60px)";
       right: ~"calc(50% - 60px)";
       top: 10px;
@@ -119,7 +136,7 @@ h1, h2, h3 {
     }
 
     @media @viewport-medium {
-      border-radius: 50%;
+      .border-radius(50%);
       right: ~"-webkit-calc(50% - 50px)";
       right: ~"calc(50% - 50px)";
       top: 10px;
@@ -156,6 +173,7 @@ h1, h2, h3 {
     color: #000;
     display: block;
     text-decoration: none;
+    white-space: nowrap;
     width: 50%;
   }
 
@@ -199,29 +217,187 @@ h1, h2, h3 {
     }
 }
 
+.summary {
+  margin: 10px;
+
+  @media print {
+    margin: 10px 0;
+  }
+}
+
 .view-online-please {
   display: none;
 
   @media print {
-    display: block;
+    display: inline;
   }
 }
 
 .view-source-please {
-  display: block;
+  display: inline;
 
   @media print {
     display: none;
   }
 }
 
+.experiences {
+  .clearfix();
+
+  h1 {
+    display: none;
+    font-size: 36px;
+    margin: 10px 0 -5px;
+    text-align: center;
+  }
+
+  ol {
+    list-style: none;
+    margin: 10px 10px 0;
+    padding: 0;
+
+    @media print {
+      margin: 0;
+    }
+  }
+
+  .experience {
+    background-color: #eee;
+    .border-radius(15px);
+    float: left;
+    margin: 0 0 10px;
+    min-height: 120px;
+    padding: 10px;
+    page-break-inside: avoid;
+    position: relative;
+
+    @media @viewport-wide,
+           @viewport-medium,
+           @viewport-narrow {
+      width: ~"-webkit-calc(50% - 25px)";
+      width: ~"calc(50% - 25px)";
+
+      &:nth-child(2n) {
+        margin-left: 10px;
+      }
+    }
+    @media @viewport-tiny {
+      width: ~"-webkit-calc(100% - 20px)";
+      width: ~"calc(100% - 20px)";
+    }
+
+    .org,
+    .org-alt,
+    .sub-org,
+    .job-title {
+      margin: 0 0 0 20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .org {
+      font-size: 21px; // Maximum size such that "Mindspark Interactive Networks" will render in the available space
+    }
+    .org-alt {
+      display: none;
+    }
+    .sub-org {
+      font-size: 16px;
+    }
+    .job-title {
+      font-size: 16px;
+    }
+    .summary {
+      font-size: 14px;
+      margin: 10px 20px;
+    }
+
+    .date-range {
+      display: block;
+      left: 5px;
+      position: absolute;
+      top: -10px;
+      .transform(rotate, 90);
+      .transform-origin(0 100%);
+
+      time:after {
+        content: " -";
+      }
+      time:last-of-type:after {
+        content: "";
+      }
+    }
+
+    .bullet-points {
+      font-size: 12px;
+      list-style: none;
+      padding: 0 0 0 20px;
+
+      li {}
+    }
+  }
+}
+
+.skills,
+.portfolio {
+  background: #ddd;
+  .border-radius(15px);
+  float: left;
+  padding: 10px;
+
+  @media @viewport-wide,
+         @viewport-medium,
+         @viewport-narrow {
+    width: ~"-webkit-calc(50% - 35px)";
+    width: ~"calc(50% - 35px)";
+
+    @media print {
+      width: ~"-webkit-calc(50% - 25px)";
+      width: ~"calc(50% - 25px)";
+    }
+  }
+  @media @viewport-tiny {
+    width: ~"-webkit-calc(100% - 40px)";
+    width: ~"calc(100% - 40px)";
+  }
+
+  h1 {
+    //display: none;
+    //font-size: 36px;
+    margin: 10px 0 -5px;
+    //text-align: center;
+  }
+}
+
 .skills {
+  margin-left: 10px;
+  margin-right: 10px;
+
+  @media @viewport-tiny {
+    margin-right: 0;
+  }
+
+  @media print {
+    margin-left: 0;
+  }
+
+  dt, dd {
+    display: inline-block;
+    float: left;
+  }
+
+  dt {
+    clear: both;
+    min-width: 100px;
+  }
 
   dd {
     background-image: url(../img/rating_stars.png);
     background-repeat: no-repeat;
     background-position: 0 0;
     height: 16px;
+    margin: 0;
     width: 94px;
   }
 
@@ -234,4 +410,18 @@ h1, h2, h3 {
   }
 
   .ScoreFactory(10);
+}
+
+.portfolio {
+  margin-bottom: 10px;
+  margin-right: 0;
+
+  @media @viewport-tiny {
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  @media print {
+    margin-right: 0;
+  }
 }

@@ -1,0 +1,131 @@
+{
+  "experiences": [
+    {
+      "organization": "Gilt Groupe",
+      "title": "Senior Web Developer",
+      "started": "4/2009",
+      "ended": "8/2014",
+      "summary": "Was a member of many teams on many projects, creating many important parts of the site, as well as much of the infrastructure behind it.",
+      "bullet_points": [
+        "Primary developer of the ever evolving, and improving, frontend assets management system, which has been through four or five major rewrites as requirements expanded and technologies improved.",
+        "Primary developer of the cart dialog, which has like-wise evolved.",
+        "Wrote many foundation/library modules used widely throughout the organization (and beyond).",
+        "Was instrumental in making Gilt responsive.",
+        "Developed two generations of the checkout process.",
+        "Proactively improved code quality and code quality tools.",
+        "Evangelized best practices for Javascript, CSS, and HTML.",
+        "Evangelized Gilt Tech at meetups and via blog posts.",
+        "Mentored junior engineers."
+      ]
+    },
+    {
+      "organization": "Mindspark Interactive Networks",
+      "organization_alt": "IAC CAP",
+      "title": "Web Developer",
+      "started": "3/2008",
+      "ended": "3/2009",
+      "summary": "Was part of a multidisciplinary team of web developers, systems engineers and designers working on several popular websites including Webfetti, iWon, and Zwinky Cuties.",
+      "bullet_points": [
+        "Worked on a wide variety of projects, using various technologies. Most projects used JSTL on top of JSP. Client side code usually used Javascript and jQuery, or were Flash/Flex based.",
+        "Worked directly with designers to create designs that would work on all modern browsers.",
+        "Google Analytics (aka Urchin) used to track user flow through the site.",
+        "jQuery used for most dynamic content because of its conciseness and flexibility.",
+        "Developed an innovative Flash 10 copy to clipboard button, because of FP10 security issues.",
+        "Multi-tasked working on multiple new features, defect remission, and maintenance.",
+        "Proposed ways to improve projects, including new features, and refinements to existing ones.",
+        "Was proactive in making sites XHTML compliant, and Javascript bug-free.",
+        "Consistently completed projects under budget."
+      ]
+    },
+    {
+      "organization": "Tyler Technologies",
+      "title": "Developer",
+      "started": "6/2006",
+      "ended": "2/2008",
+      "summary": "Worked on a HTML/VBScript based Courts &amp; Justice solution, specifically on the Case Management and Law Enforcement teams. Spent most of my time on small teams using an Agile/Scrum life cycle.",
+      "bullet_points": [
+        "AJAX used to communicate between client and server-side components.",
+        "All client-side data was represented by XML, which was usually converted to HTML using XSL and XPath. All server-side data was stored in a SQL Server database; developers wrote their own Stored Procedures.",
+        "Data was usually preprocessed in a server-side COM+ component before being saved. All new components were written in C#, however, legacy components were written in VB6, and required knowledge of VB6 for maintenance purposes.",
+        "Visual Source Safe was originally used for source control, but was replaced by AccuRev.",
+        "Jira was used for tracking defects, while Rally was used for tracking projects."
+      ]
+    },
+    {
+      "organization": "University of Texas at Arlington",
+      "sub_organization": "College of Engineering",
+      "title": "Research Assistant",
+      "ended": "5/2006",
+      "graduated": true,
+      "summary": "Worked in the A.I. Lab developing a testbed for research in cognitive architecture.",
+      "bullet_points": [
+        "B.S., Computer Science",
+        "Developed a logging system for the state vector of all interactive objects in a combat simulation.",
+        "Designed and developed test environments for a combat simulation using Quake 3 as an engine.",
+        "Treasurer, UTA Chapter of the Association for Computing Machinery"
+      ]
+    }
+  ],
+  "skills": {
+    "Javascript": 10,
+    "CSS": 9,
+    "BDD/TDD": 8,
+    "Node.js": 8,
+    "Git": 6,
+    "Jira": 5,
+    "Ruby": 6,
+    "Photoshop": 4
+  },
+  "portfolioGroups": [
+    {
+      "name": "Github",
+      "sites": [
+        {
+          "name": "nevir/groc",
+          "url": "http://www.github.com/nevir/groc"
+        },
+        {
+          "name": "gilt/kairos",
+          "url": "http://www.github.com/gilt/kairos"
+        }
+      ]
+    },
+    {
+      "name": "Gilt Groupe",
+      "sites": [
+        {
+          "name": "Gilt",
+          "url": "http://www.gilt.com/"
+        },
+        {
+          "name": "Gilt Home",
+          "defunct": true,
+          "url": "http://www.gilthome.com/"
+        },
+        {
+          "name": "Park & Bond",
+          "defunct": true,
+          "url": "http://www.parkandbond.com/"
+        }
+      ]
+    },
+    {
+      "name": "Mindspark",
+      "sites": [
+        {
+          "name": "Webfetti",
+          "url": "http://www.webfetti.com/"
+        },
+        {
+          "name": "iWon",
+          "url": "http://www.iwon.com/"
+        },
+        {
+          "name": "Zwinky Cuties",
+          "defunct": true,
+          "url": "http://www.zwinkycuties.com/"
+        }
+      ]
+    }
+  ]
+}
