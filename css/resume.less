@@ -222,8 +222,26 @@ h1, h2, h3 {
 }
 
 .summary {
-  margin: 10px;
   text-align: center;
+
+  @media @viewport-wide {
+    margin: 10px auto;
+    width: 50%;
+  }
+
+  @media @viewport-medium {
+    margin: 10px auto;
+    width: 67%;
+  }
+
+  @media @viewport-narrow {
+    margin: 10px auto;
+    width: 75%;
+  }
+
+  @media @viewport-tiny {
+    margin: 10px;
+  }
 
   @media print {
     margin: 10px 0;
