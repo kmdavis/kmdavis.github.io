@@ -95,7 +95,24 @@
       "sites": [
         {
           "name": "Gilt",
-          "url": "http://www.gilt.com/"
+          "url": "http://www.gilt.com/",
+          "samples": [
+            "http://www.gilt.com/a/js/web-mosaic/0.1.164/common/hotkey/hotkey.js",
+            "http://www.gilt.com/a/js/web-mosaic/0.1.164/common/image_manager/image_manager.js",
+            "http://www.gilt.com/a/js/web-mosaic/0.1.164/common/logger/logger.js",
+            "http://www.gilt.com/a/js/web-mosaic/0.1.164/common/string_utils/string_utils.js",
+            "http://www.gilt.com/a/js/web-mosaic/0.1.164/common/template/template.js",
+            "http://www.gilt.com/a/js/web-mosaic/0.1.164/common/uri/uri.js",
+            "http://www.gilt.com/a/js/web-mosaic/0.1.164/controller/cart/cart.js",
+            "http://www.gilt.com/a/js/web-mosaic/0.1.164/dom/carousel/carousel.js",
+            "http://www.gilt.com/a/js/web-mosaic/0.1.164/dom/dialog/dialog.js",
+            "http://www.gilt.com/a/js/web-mosaic/0.1.164/dom/time_frame_sequence/time_frame_sequence.js",
+            "http://www.gilt.com/a/js/web-mosaic/0.1.164/dom/tooltip/tooltip.js",
+            "http://www.gilt.com/a/js/web-mosaic/0.1.164/dom/zoom/zoom.js",
+            "http://www.gilt.com/a/js/web-mosaic/0.1.164/internal/require_wrapper/require_wrapper.js",
+            "http://www.gilt.com/a/js/web-mosaic/0.1.164/model/base/base.js",
+            "http://www.gilt.com/a/js/web-mosaic/0.1.164/view/cart_dialog/cart_dialog.js"
+          ]
         },
         {
           "name": "Gilt Home",
