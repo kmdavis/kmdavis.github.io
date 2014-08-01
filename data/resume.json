@@ -1,3 +1,4 @@
+
 {
   "experiences": [
     {
@@ -10,6 +11,7 @@
         "Primary developer of the ever evolving, and improving, frontend assets management system, which has been through four or five major rewrites as requirements expanded and technologies improved.",
         "Primary developer of the cart dialog, which has like-wise evolved.",
         "Wrote many foundation/library modules used widely throughout the organization (and beyond).",
+        "Created build tools that were essential to Gilt's LOSA (Lots Of Small Apps) initiative.",
         "Was instrumental in making Gilt responsive.",
         "Developed two generations of the checkout process.",
         "Proactively improved code quality and code quality tools.",
@@ -67,14 +69,18 @@
     }
   ],
   "skills": {
-    "Javascript": 10,
-    "CSS": 9,
+    "CSS/LESS": 10,
     "BDD/TDD": 8,
-    "Node.js": 8,
     "Git": 6,
+    "Java": 3,
+    "Javascript": 10,
     "Jira": 5,
+    "Node.js": 8,
+    "Photoshop": 4,
+    "Responsiveness": 7,
+    "REST": 5,
     "Ruby": 6,
-    "Photoshop": 4
+    "Scala": 4
   },
   "portfolioGroups": [
     {
