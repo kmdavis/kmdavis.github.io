@@ -2,6 +2,17 @@
 {
   "experiences": [
     {
+      "enabled": false,
+      "organization": "Handshake",
+      "title": "Senior Web Developer",
+      "started": "10/2014",
+      "summary": "TBD",
+      "bullet_points": [
+
+      ]
+    },
+    {
+      "enabled": true,
       "organization": "Gilt Groupe",
       "title": "Senior Web Developer",
       "started": "4/2009",
@@ -21,6 +32,7 @@
       ]
     },
     {
+      "enabled": true,
       "organization": "Mindspark Interactive Networks",
       "organization_alt": "IAC CAP",
       "title": "Web Developer",
@@ -40,6 +52,7 @@
       ]
     },
     {
+      "enabled": true,
       "organization": "Tyler Technologies",
       "title": "Developer",
       "started": "6/2006",
@@ -54,6 +67,7 @@
       ]
     },
     {
+      "enabled": true,
       "organization": "University of Texas at Arlington",
       "sub_organization": "College of Engineering",
       "title": "Research Assistant",

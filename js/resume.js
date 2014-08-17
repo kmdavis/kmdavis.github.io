@@ -117,6 +117,37 @@ function (_, $, when, handlebars) {
     });
   }
 
+  function obfuscate () {
+    $('').each(function () {
+      var
+        $el = $(this),
+        val = $el.text(),
+        part1 = [],
+        part2 = [];
+
+      val.replace(/(.)(.)|(.)/g, function (all, a, b, c) {
+        part1.push(a || c);
+        if (!_.isUndefined(b)) {
+          part2.push(b);
+        }
+      });
+
+      $el.text(part1.join('') + part2.reverse().join(''));
+    });
+  }
+
+  function unobfuscate () {
+    $('.u-impp, .u-email, .p-tel, .p-street-address').each(function () {
+      var
+        $el = $(this),
+        val = $el.text(),
+        part1 = val.slice(0, Math.floor(val.length / 2)).split(''),
+        part2 = val.slice(Math.floor(val.length / 2)).split('');
+
+      $el.text(_.flatten(_.zip(part1, part2.reverse())).join(''));
+    });
+  }
+
   /**
    * Inits the Résumé.
    *
@@ -126,6 +157,8 @@ function (_, $, when, handlebars) {
   function init () {
     banner();
     renderAll();
+    //obfuscate();
+    setTimeout(unobfuscate, 500);
   }
 
   return {
