@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" data-chat-endpoint="https://chat-backend-iota-pearl.vercel.app/api/chat">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kevan Maxwell Davis | Resume</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../chat.css">
+  <script defer src="../scripts.js"></script>
+  <script defer src="../chat.js"></script>
+</head>
+<body class="paper-letter" data-paper-fallback="letter">
+  <main class="sheets flex flex-wrap justify-center gap-6 p-6 print:p-0 print:gap-0" aria-label="Resume">
+    <article class="sheet" aria-label="Resume page 1">
+<h1>Kevan Maxwell Davis</h1>
+<p><strong>Staff AI Engineer | Agent Orchestration, Developer Tooling &amp; Automation</strong></p>
+<p>Denver, Colorado, USA | i.am.kevan.davis@gmail.com | 817-791-3542 | linkedin.com/in/kevanmdavis</p>
+<h2>Professional Summary</h2>
+<p>Hands-on Staff Software Engineer with 20 years in software development, including approximately five at Staff level at Shopify. Builds reusable AI tools and agent workflows that connect models, APIs, and human reviewers. Experienced with multi-agent routing, model-provider abstractions, latency and reliability tradeoffs, MCP/CLI interfaces, and AI evaluation. Particularly effective turning experimental workflows into extensible tools for technical and nontechnical users.</p>
+<h2>Core Skills</h2>
+<p><strong>Agents and LLMs:</strong> Vercel AI SDK, Pi (RPC/extensions), MCP, OpenAI, Anthropic, Gemini, multi-agent councils, routing and aggregation, model fallbacks, evaluation and validation, human escalation, multimodal AI</p>
+<p><strong>Development:</strong> TypeScript, JavaScript, Node.js, React, API design, CLI tooling, shared libraries, asynchronous workflows, HTTP/service integrations, PostgreSQL, MySQL, Prisma</p>
+<p><strong>Infrastructure:</strong> Docker, Kubernetes; working familiarity with AWS and GCP</p>
+<h2>Professional Experience</h2>
+<h3>Shopify | Staff Software Engineer | Approx. 2021–November 2026</h3>
+<ul>
+<li>Rebuilt <strong>Shopp-E</strong> as an isomorphic TypeScript platform on <strong>Vercel AI SDK</strong>, offering reusable interfaces to multiple AI providers for web, CLI, and MCP clients. Developed a model registry tracking capabilities, limits, and costs; the system served an estimated <strong>hundreds of daily users</strong> and generated <strong>100,000+ images</strong>.</li>
+<li>Implemented asynchronous generation jobs, provider fallbacks during outages, and remote polling for multi-minute video requests, making multiple image, video, speech, and music providers accessible through common interfaces.</li>
+<li>Built a working <strong>multi-agent code review</strong> pipeline: low-cost Jev classifiers identified change characteristics and selected specialized security, accessibility, API, and developer-experience reviewers; an aggregator created consolidated findings, guided PR tours, and diagrams. Piloted with a handful of engineers.</li>
+<li>Developed a Pi extension that used a council of fast models, within a millisecond-scale time budget, to assess shell commands and web fetches and present human override when needed.</li>
+<li>Built agent-facing retrieval and interface tools, including HTML-to-Markdown extraction (preferring site-provided Markdown), a rich Markdown editor with attachment previews, and extensible confirm/ask/modal/toast surfaces for the collaborative Pi IDE.</li>
+<li>Created an AI-driven Liquid template migration prototype with structure-aware patches and an iterative validation pipeline (parsing, render screenshots, vision-model judgments, human review). Achieved <strong>90% success on a small curated benchmark</strong> and then led a <strong>six-engineer</strong> production development effort that was canceled before launch.</li>
+<li>Added coverage calculation and rule-inheritance visualizations for configurable multichannel product mapping, shipped in Shopify Editions in 2026.</li>
+</ul>
+    </article>
+    <article class="sheet" aria-label="Resume page 2">
+<h3>Shopify | Senior Software Engineer | May 2019–Approx. 2021</h3>
+<ul>
+<li>Co-developed the developer API prototype for Shopify's sandboxed Checkout UI Extensions and collaborated on integration with remote UI; core design principles informed the eventual production platform.</li>
+<li>Helped develop native B2B commerce and post-checkout upsell capabilities; named co-inventor on <strong>U.S. Patent 11,403,658</strong> (2022).</li>
+</ul>
+<h3>Handshake (acquired by Shopify) | Senior Developer / Engineer | October 2014–May 2019</h3>
+<ul>
+<li>Contributed to a React-based modernization of a B2B commerce platform with self-service ordering and configurable catalogs, working on a small frontend team.</li>
+</ul>
+<h3>Gilt Groupe | Web Developer → Senior Web Developer | April 2009–August 2014</h3>
+<ul>
+<li>Developed core UI libraries, cart and checkout experiences, build tooling, and frontend infrastructure; supported responsive design and mentoring. <em>Senior promotion date to be confirmed (possibly 2013–2014).</em></li>
+</ul>
+<p><strong>Earlier:</strong> Web Developer, Mindspark (2008–2009); Developer, Tyler Technologies (2006–2008); UTA AI Lab Research Assistant (through 2006).</p>
+<h2>Education</h2>
+<p><strong>University of Texas at Arlington</strong> | B.S., Computer Science</p>
+    </article>
+  </main>
+</body>
+</html>

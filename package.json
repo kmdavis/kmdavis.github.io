@@ -9,17 +9,10 @@
   ],
   "author": {
     "name": "Kevan Davis",
-    "email": "kevan.davis@me.com"
+    "email": "i.am.kevan.davis@gmail.com"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/kmdavis/resume.git"
-  },
-  "main": "app.js",
-  "devDependencies": {
-    "express": "3.x.x"
-  },
-  "engine": {
-    "node": ">=0.10.0"
   }
 }

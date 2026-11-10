@@ -1,4 +1,4 @@
-// Regenerate the static pages after editing either Markdown source: node resume/build.js
+// Regenerate every static resume page after editing a Markdown source: node resume/build.js
 const fs = require('fs');
 const path = require('path');
 const root = __dirname;
@@ -35,9 +35,9 @@ function render(text) {
   if (list) out.push('</ul>');
   return out.join('\n');
 }
-function build(source, destination, fallback, prefix) {
+function build(source, destination, fallback, prefix, splitHeading) {
   const text = fs.readFileSync(path.join(root, source), 'utf8');
-  const split = text.indexOf('### Shopify | Senior Software Engineer');
+  const split = text.indexOf(splitHeading);
   if (split < 0) throw new Error('Page break heading missing from ' + source);
   const pages = [text.slice(0, split), text.slice(split)];
   const html = `<!doctype html>
@@ -62,5 +62,9 @@ ${pages.map((page, i) => `    <article class="sheet" aria-label="Resume page ${i
   fs.mkdirSync(path.dirname(path.join(root, destination)), { recursive: true });
   fs.writeFileSync(path.join(root, destination), html);
 }
-build('kevan_resume_master_v1.md', 'index.html', 'letter', '');
-build('kevan_resume_agoda_v1.md', 'agoda/index.html', 'a4', '../');
+build('kevan_resume_master_v1.md', 'index.html', 'letter', '', '### Shopify | Senior Software Engineer');
+build('kevan_resume_agoda_v1.md', 'agoda/index.html', 'a4', '../', '### Shopify | Senior Software Engineer');
+build('kevan_resume_clickup_staff_ai_product.md', 'clickup/index.html', 'letter', '../', '### Shopify | Senior Software Engineer');
+build('kevan_resume_customerio_staff_product_ai.md', 'customerio/index.html', 'letter', '../', '### Shopify | Senior Software Engineer');
+build('kevan_resume_grafana_staff_ai.md', 'grafana/index.html', 'letter', '../', '### Shopify | Senior Software Engineer');
+build('kevan_resume_openai_glen_platform.md', 'openai/index.html', 'letter', '../', '### Developer extensibility platforms');
