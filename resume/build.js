@@ -16,6 +16,7 @@ const pages = [
   { directory: 'clickup', fallback: 'letter', prefix: '../' },
   { directory: 'customerio', fallback: 'letter', prefix: '../' },
   { directory: 'grafana', fallback: 'letter', prefix: '../' },
+  { directory: 'hercules', fallback: 'letter', prefix: '../' },
   { directory: 'openai', fallback: 'letter', prefix: '../' },
 ];
 

@@ -7,7 +7,7 @@ npm --prefix scripts install
 npx --prefix scripts playwright install chromium
 ```
 
-After each `resume/<page>/index.md` contains exactly one standalone `<!-- pagebreak -->`, generate static HTML and verify all six pages with:
+After each `resume/<page>/index.md` contains exactly one standalone `<!-- pagebreak -->`, generate static HTML and verify all seven pages with:
 
 ```sh
 npm --prefix scripts run generate

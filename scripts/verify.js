@@ -9,7 +9,7 @@ const root = path.resolve(__dirname, '..');
 const previews = path.join(root, 'previews');
 const pages = [
   { route: '/resume/', dir: 'resume', paper: 'letter' },
-  ...['agoda', 'clickup', 'customerio', 'grafana', 'openai'].map(dir => ({ route: `/resume/${dir}/`, dir: `resume/${dir}`, paper: dir === 'agoda' ? 'a4' : 'letter' }))
+  ...['agoda', 'clickup', 'customerio', 'grafana', 'hercules', 'openai'].map(dir => ({ route: `/resume/${dir}/`, dir: `resume/${dir}`, paper: dir === 'agoda' ? 'a4' : 'letter' }))
 ];
 const forbidden = /\b(?:TODO|TBD|lorem ipsum|placeholder)\b/i;
 
