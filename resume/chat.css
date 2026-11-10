@@ -1,0 +1,23 @@
+.resume-chat, .resume-back-to-top { font-family: Arial, Helvetica, sans-serif; }
+.resume-chat { position: fixed; z-index: 1000; right: 24px; bottom: 24px; color: #182331; font-size: 15px; }
+.resume-chat-toggle, .resume-chat-send { border: 0; border-radius: 999px; background: #174c70; color: #fff; padding: 13px 19px; font: inherit; font-weight: 700; cursor: pointer; box-shadow: 0 4px 16px #142b4040; }
+.resume-chat-toggle:hover, .resume-chat-send:hover { background: #103750; }
+.resume-chat-panel { position: absolute; right: 0; bottom: 60px; width: min(360px, calc(100vw - 32px)); height: min(480px, calc(100dvh - 110px)); min-height: 280px; background: #fff; border: 1px solid #c5d0d8; border-radius: 14px; box-shadow: 0 8px 32px #142b4033; display: flex; flex-direction: column; overflow: hidden; }
+.resume-chat-panel[hidden] { display: none; }
+.resume-chat-panel header { display: flex; align-items: center; justify-content: space-between; padding: 13px 16px; background: #174c70; color: white; }
+.resume-chat-panel header h2 { margin: 0; font-size: 16px; }
+.resume-chat-close { border: 0; background: transparent; color: white; font-size: 24px; cursor: pointer; }
+.resume-chat-log { flex: 1; overflow-y: auto; padding: 12px; }
+.resume-chat-message { max-width: 90%; margin: 0 0 10px; padding: 9px 11px; border-radius: 10px; white-space: pre-wrap; overflow-wrap: anywhere; background: #edf2f5; }
+.resume-chat-message.user { margin-left: auto; color: white; background: #174c70; }
+.resume-chat-message.notice { background: #fff3cd; }
+.resume-chat-panel form { display: grid; grid-template-columns: 1fr auto; gap: 6px 8px; padding: 10px; border-top: 1px solid #d9e0e5; }
+.resume-chat-panel label { grid-column: 1 / -1; font-size: 13px; }
+.resume-chat-panel textarea { min-width: 0; resize: vertical; border: 1px solid #aab8c2; border-radius: 7px; padding: 8px; font: inherit; }
+.resume-chat-send { align-self: end; padding: 10px 14px; }
+.resume-chat-send:disabled { opacity: .6; cursor: wait; }
+.resume-chat :focus-visible, .resume-back-to-top:focus-visible { outline: 3px solid #e6a700; outline-offset: 3px; }
+.resume-back-to-top { position: fixed; z-index: 999; right: 29px; bottom: 94px; display: none; width: 42px; height: 42px; border: 1px solid #b6c3cd; border-radius: 50%; background: #fff; color: #174c70; font-size: 23px; cursor: pointer; box-shadow: 0 3px 12px #142b4030; }
+.resume-back-to-top.visible { display: block; }
+@media (max-width: 480px) { .resume-chat { right: 12px; bottom: 12px; } .resume-back-to-top { right: 17px; bottom: 82px; } }
+@media print { .resume-chat, .resume-back-to-top { display: none !important; } }

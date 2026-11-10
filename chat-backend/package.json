@@ -1,0 +1,16 @@
+{
+  "name": "resume-chat-backend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "@ai-sdk/google": "3.0.0",
+    "@vercel/node": "5.3.21",
+    "ai": "6.0.0"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}
