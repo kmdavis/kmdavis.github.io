@@ -28,9 +28,10 @@ body.paper-a4 { --sheet-width: 210mm; --sheet-height: 297mm; }
 .resume-controls a { color: #174c70; }
 @media screen and (max-width: 720px) {
   body { background: white; }
-  .sheets { display: block; padding: 12px; }
-  .sheet { width: 100%; height: auto; min-height: 0; padding: 24px 18px; box-shadow: none; overflow-wrap: anywhere; }
-  .sheet + .sheet { border-top: 2px solid #d8e0e6; }
+  body .sheets { display: block; width: 100%; max-width: 100%; padding: 24px 20px; }
+  body .sheets .sheet { display: block; width: auto; max-width: 100%; height: auto; min-height: 0; padding: 0; box-shadow: none; overflow-wrap: anywhere; }
+  body .sheets .sheet + .sheet { border: 0; }
+  body .sheets .sheet + .sheet > h2:first-child { display: none; }
 }
 @media print {
   body { background: white; }

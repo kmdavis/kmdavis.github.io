@@ -129,8 +129,17 @@ function server() {
         await doc.destroy();
       }
       await page.setViewportSize({ width: 390, height: 844 });
-      const mobile = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, width: document.documentElement.scrollWidth }));
-      if (mobile.width > mobile.viewport) throw new Error(`${item.route}: mobile layout overflows horizontally`);
+      const mobile = await page.evaluate(() => ({
+        viewport: document.documentElement.clientWidth,
+        width: document.documentElement.scrollWidth,
+        content: [...document.querySelectorAll('.sheet, .sheet h1')].map(node => {
+          const rect = node.getBoundingClientRect();
+          return { left: rect.left, right: rect.right };
+        }),
+      }));
+      if (mobile.width > mobile.viewport || mobile.content.some(rect => rect.left < 0 || rect.right > mobile.viewport)) {
+        throw new Error(`${item.route}: mobile résumé content extends outside the viewport`);
+      }
       await page.emulateMedia({ media: 'print' });
       const mobilePrint = await sheets.first().evaluate(node => ({ width: node.getBoundingClientRect().width, padding: parseFloat(getComputedStyle(node).paddingLeft) }));
       if (mobilePrint.width < 790 || mobilePrint.padding < 36) throw new Error(`${item.route}: mobile print does not retain paper geometry`);
