@@ -12,6 +12,15 @@
   const log = chat.querySelector('.resume-chat-log');
   const input = chat.querySelector('textarea');
   const form = chat.querySelector('form');
+  const send = form.querySelector('button');
+  input.setAttribute('aria-keyshortcuts', 'Control+Enter Meta+Enter');
+  input.title = 'Press Ctrl+Enter or Command+Enter to send';
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey) && !e.isComposing) {
+      e.preventDefault();
+      if (!send.disabled) form.requestSubmit();
+    }
+  });
   const close = chat.querySelector('.resume-chat-close');
   const messages = [];
   function setOpen(open) { panel.hidden = !open; toggle.setAttribute('aria-expanded', String(open)); if (open) input.focus(); }
@@ -26,12 +35,14 @@
   window.addEventListener('scroll', () => { top.classList.toggle('visible', window.scrollY > 300); }, { passive: true });
   form.addEventListener('submit', async e => {
     e.preventDefault();
-    const content = input.value.trim(); if (!content) return;
+    const content = input.value.trim(); if (!content || send.disabled) return;
     input.value = ''; appendMessage('user', content); messages.push({ role: 'user', content });
     const endpoint = root.dataset.chatEndpoint;
     if (!endpoint) { appendMessage('notice', 'Chat is not configured on this page yet.'); messages.pop(); return; }
-    const send = form.querySelector('button'); send.disabled = true;
-    const responseMessage = appendMessage('assistant', '');
+    send.disabled = true;
+    const responseMessage = appendMessage('assistant', 'Thinking…');
+    responseMessage.classList.add('is-waiting');
+    responseMessage.setAttribute('role', 'status');
     try {
       const recent = [];
       let length = 0;
@@ -44,12 +55,27 @@
       const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: recent }) });
       if (!response.ok || !response.body) throw new Error('Chat request failed. Please try again.');
       const reader = response.body.getReader(); const decoder = new TextDecoder(); let answer = '';
-      while (true) { const { value, done } = await reader.read(); if (done) break; answer += decoder.decode(value, { stream: true }); responseMessage.textContent = answer; log.scrollTop = log.scrollHeight; }
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        answer += decoder.decode(value, { stream: true });
+        if (answer) {
+          responseMessage.classList.remove('is-waiting');
+          responseMessage.removeAttribute('role');
+          responseMessage.textContent = answer;
+          log.scrollTop = log.scrollHeight;
+        }
+      }
       answer += decoder.decode();
       if (!answer.trim()) throw new Error('No response was returned. Please try again.');
       responseMessage.textContent = answer;
       messages.push({ role: 'assistant', content: answer });
     } catch (error) { responseMessage.textContent = error instanceof TypeError ? 'Unable to reach chat. Check your connection and try again.' : error.message; messages.pop(); }
-    finally { send.disabled = false; input.focus(); }
+    finally {
+      responseMessage.classList.remove('is-waiting');
+      responseMessage.removeAttribute('role');
+      send.disabled = false;
+      input.focus();
+    }
   });
 })();

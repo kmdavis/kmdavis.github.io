@@ -2,6 +2,8 @@
 
 This endpoint streams plain-text answers from Google-hosted Gemma 4 through the Vercel AI SDK. The browser never receives the Google API key. It accepts the page's `POST {"messages":[{"role":"user"|"assistant","content":"..."}]}` contract and returns response text as it streams.
 
+In the chat input, Ctrl+Enter or Command+Enter sends a message; Enter inserts a newline. A waiting indicator remains visible until the response starts.
+
 ## Deploy
 
 1. Publish the sanitized dossier at `https://kmdavis.github.io/resume/dossier-public.md`. It must be public plain UTF-8 text, non-empty, and no larger than 48 KiB. The endpoint fetches it on a cold instance and caches it in memory for five minutes.

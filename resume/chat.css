@@ -11,6 +11,9 @@
 .resume-chat-message { max-width: 90%; margin: 0 0 10px; padding: 9px 11px; border-radius: 10px; white-space: pre-wrap; overflow-wrap: anywhere; background: #edf2f5; }
 .resume-chat-message.user { margin-left: auto; color: white; background: #174c70; }
 .resume-chat-message.notice { background: #fff3cd; }
+.resume-chat-message.is-waiting::before { content: ''; display: inline-block; width: 14px; height: 14px; margin-right: 8px; vertical-align: -2px; border: 2px solid #b6c3cd; border-top-color: #174c70; border-radius: 50%; animation: resume-chat-spin .8s linear infinite; }
+@keyframes resume-chat-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .resume-chat-message.is-waiting::before { animation: none; } }
 .resume-chat-panel form { display: grid; grid-template-columns: 1fr auto; gap: 6px 8px; padding: 10px; border-top: 1px solid #d9e0e5; }
 .resume-chat-panel label { grid-column: 1 / -1; font-size: 13px; }
 .resume-chat-panel textarea { min-width: 0; resize: vertical; border: 1px solid #aab8c2; border-radius: 7px; padding: 8px; font: inherit; }
