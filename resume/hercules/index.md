@@ -1,7 +1,7 @@
 # Kevan Maxwell Davis
 **Staff Software Engineer | AI Product Experiences, Frontend Architecture & Developer Tools**
 
-Denver, Colorado, USA | [i.am.kevan.davis@gmail.com](mailto:i.am.kevan.davis@gmail.com) | [817-791-3542](tel:+18177913542) | [linkedin.com/in/kevanmdavis](https://www.linkedin.com/in/kevanmdavis) | [Interactive résumé](https://kmdavis.github.io/resume/)
+Denver, Colorado, USA | [i.am.kevan.davis@gmail.com](mailto:i.am.kevan.davis@gmail.com) | [817-791-3542](tel:+18177913542) | [linkedin.com/in/kevanmdavis](https://www.linkedin.com/in/kevanmdavis)
 
 ## Professional Summary
 Hands-on Staff Software Engineer with 20 years building customer-facing products, developer platforms, and extensible frontend systems. Deep TypeScript/React experience and recent focus on AI-powered creation tools, coding agents, model integrations, and intuitive developer interfaces. Combines product judgment with rapid prototyping, practical API design, and technical leadership. Based in Colorado and willing to travel regularly to San Francisco.
