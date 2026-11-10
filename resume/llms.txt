@@ -1,0 +1,18 @@
+# Kevan Maxwell Davis
+
+> Staff AI Product Engineer focused on AI developer tools, agent systems, frontend architecture, and commerce platforms.
+
+Kevan Maxwell Davis is a software engineer with 20 years of experience spanning frontend and product-platform engineering, commerce products, developer tools, and applied AI. He worked at Tyler Technologies, Mindspark Interactive Networks, Gilt Groupe, Handshake, and Shopify. At Shopify, his work included multimodal AI tools, AI-assisted development workflows, commerce platforms, and frontend extensibility. His Bachelor of Science in Computer Science is from the University of Texas at Arlington.
+
+## Career Information
+
+- [Master résumé](https://kmdavis.github.io/resume/index.md): General career résumé spanning AI, commerce, and developer platforms.
+- [Public career dossier](https://kmdavis.github.io/resume/dossier-public.md): The most complete career reference, with expanded project context and accuracy notes.
+
+## Targeted Résumés
+
+- [Agoda](https://kmdavis.github.io/resume/agoda/index.md): Frontend architecture and AI product engineering.
+- [ClickUp](https://kmdavis.github.io/resume/clickup/index.md): Multimodal AI product engineering and agent systems.
+- [Customer.io](https://kmdavis.github.io/resume/customerio/index.md): AI-assisted product workflows and commerce.
+- [Grafana Labs](https://kmdavis.github.io/resume/grafana/index.md): Agent orchestration and developer tooling.
+- [OpenAI](https://kmdavis.github.io/resume/openai/index.md): AI developer platforms and extensible systems.

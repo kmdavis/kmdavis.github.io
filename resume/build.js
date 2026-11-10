@@ -1,4 +1,4 @@
-// Regenerate every static resume page after editing a Markdown source: node resume/build.js
+// Regenerate every static resume page after editing its canonical Markdown: node resume/build.js
 const fs = require('fs');
 const path = require('path');
 const root = __dirname;
@@ -8,63 +8,114 @@ if (chatEndpoint && new URL(chatEndpoint).protocol !== 'https:') {
   throw new Error('RESUME_CHAT_ENDPOINT must use HTTPS');
 }
 const endpointAttribute = chatEndpoint
-  ? ` data-chat-endpoint="${chatEndpoint.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;')}"`
+  ? ` data-chat-endpoint="${escapeAttribute(chatEndpoint)}"`
   : '';
-function inline(text) {
-  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g, '<em>$1</em>');
+const pages = [
+  { directory: '', fallback: 'letter', prefix: '' },
+  { directory: 'agoda', fallback: 'a4', prefix: '../' },
+  { directory: 'clickup', fallback: 'letter', prefix: '../' },
+  { directory: 'customerio', fallback: 'letter', prefix: '../' },
+  { directory: 'grafana', fallback: 'letter', prefix: '../' },
+  { directory: 'openai', fallback: 'letter', prefix: '../' },
+];
+
+function escapeAttribute(value) {
+  return value.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 }
-function render(text) {
-  let list = false;
+function inline(text) {
+  const tokens = [];
+  const hold = (html) => `\u0000${tokens.push(html) - 1}\u0000`;
+  text = text.replace(/\\([\\`*_{}[\]()#+\-.!>])/g, (_, char) => hold(escapeAttribute(char)));
+  text = text.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+|mailto:[^\s)]+|tel:[^\s)]+)\)/g,
+    (_, label, href) => hold(`<a href="${escapeAttribute(href)}">${inline(label)}</a>`));
+  text = escapeAttribute(text)
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/__(.+?)__/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/_(.+?)_/g, '<em>$1</em>');
+  return text.replace(/\u0000(\d+)\u0000/g, (_, index) => tokens[index]);
+}
+function render(markdown) {
   const out = [];
-  for (const line of text.split(/\r?\n/)) {
-    if (!line.trim()) continue;
-    if (line.startsWith('- ')) {
-      if (!list) { out.push('<ul>'); list = true; }
-      out.push('<li>' + inline(line.slice(2)) + '</li>');
+  let list = null;
+  let paragraph = [];
+  const flushParagraph = () => {
+    if (paragraph.length) out.push(`<p>${inline(paragraph.join(' '))}</p>`);
+    paragraph = [];
+  };
+  const closeList = () => {
+    if (list) out.push(`</${list}>`);
+    list = null;
+  };
+  for (const line of markdown.split(/\r?\n/)) {
+    if (!line.trim()) { flushParagraph(); closeList(); continue; }
+    const item = /^\s*(?:[-*+]\s+|\d+\.\s+)(.*)$/.exec(line);
+    if (item) {
+      flushParagraph();
+      const type = /^\s*\d+\./.test(line) ? 'ol' : 'ul';
+      if (list !== type) { closeList(); out.push(`<${type}>`); list = type; }
+      out.push(`<li>${inline(item[1])}</li>`);
       continue;
     }
-    if (list) { out.push('</ul>'); list = false; }
-    const heading = /^(#{1,3}) (.*)$/.exec(line);
+    const heading = /^(#{1,3})\s+(.*)$/.exec(line);
     if (heading) {
+      flushParagraph(); closeList();
       const level = heading[1].length;
       out.push(`<h${level}>${inline(heading[2])}</h${level}>`);
-    } else out.push('<p>' + inline(line) + '</p>');
+    } else paragraph.push(line.trim());
   }
-  if (list) out.push('</ul>');
+  flushParagraph(); closeList();
   return out.join('\n');
 }
-function build(source, destination, fallback, prefix, splitHeading) {
-  const text = fs.readFileSync(path.join(root, source), 'utf8');
-  const split = text.indexOf(splitHeading);
-  if (split < 0) throw new Error('Page break heading missing from ' + source);
-  const pages = [text.slice(0, split), text.slice(split)];
+function build(page) {
+  const directory = path.join(root, page.directory);
+  const markdownPath = path.join(directory, 'index.md');
+  const markdown = fs.readFileSync(markdownPath, 'utf8');
+  const markers = [...markdown.matchAll(/^<!--[ \t]*pagebreak[ \t]*-->[ \t]*$/gm)];
+  if (markers.length !== 1) throw new Error(`${markdownPath} must contain exactly one standalone <!-- pagebreak --> marker`);
+  const marker = markers[0];
+  const content = [markdown.slice(0, marker.index), markdown.slice(marker.index + marker[0].length)];
+  const name = (/^#\s+(.+)$/m.exec(content[0]) || [null, 'Resume'])[1].trim();
+  const role = (/^\*\*(.+?)\*\*$/m.exec(content[0]) || [null, 'Professional Resume'])[1].trim();
+  const title = `${name} | ${role} Resume`;
+  const description = `${name} — ${role}. Professional experience, technical skills, education, and selected accomplishments.`;
+  const sitePath = page.directory ? `/resume/${page.directory}/` : '/resume/';
+  const canonical = `https://kmdavis.github.io${sitePath}`;
+  const prefix = page.prefix;
   const html = `<!doctype html>
 <html lang="en"${endpointAttribute}>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kevan Maxwell Davis | Resume</title>
+  <title>${escapeAttribute(title)}</title>
+  <meta name="description" content="${escapeAttribute(description)}">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="${escapeAttribute(title)}">
+  <meta property="og:description" content="${escapeAttribute(description)}">
+  <meta property="og:url" content="${canonical}">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="${escapeAttribute(title)}">
+  <meta name="twitter:description" content="${escapeAttribute(description)}">
+  <link rel="canonical" href="${canonical}">
+  <link rel="alternate" type="text/markdown" title="Markdown résumé" href="./index.md">
+  <link rel="alternate" type="application/pdf" title="PDF résumé" href="./resume.pdf">
+  <link rel="describedby" type="text/markdown" href="/resume/llms.txt">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="${prefix}style.css">
   <link rel="stylesheet" href="${prefix}chat.css">
   <script defer src="${prefix}scripts.js"></script>
   <script defer src="${prefix}chat.js"></script>
 </head>
-<body class="paper-${fallback}" data-paper-fallback="${fallback}">
-  <main class="sheets flex flex-wrap justify-center gap-6 p-6 print:p-0 print:gap-0" aria-label="Resume">
-${pages.map((page, i) => `    <article class="sheet" aria-label="Resume page ${i + 1}">\n${render(page)}\n    </article>`).join('\n')}
+<body class="paper-${page.fallback}" data-paper-fallback="${page.fallback}">
+  <nav class="resume-controls flex flex-wrap justify-center gap-4 px-4 pt-3 font-sans text-sm font-semibold max-[720px]:justify-start print:hidden" aria-label="Resume formats"><a href="./resume.pdf">Download PDF</a><a href="./index.md">View Markdown</a></nav>
+  <main class="sheets flex flex-wrap justify-center gap-6 p-6 print:p-0 print:gap-0" aria-label="Resume" aria-describedby="resume-description">
+    <p id="resume-description" class="sr-only">${escapeAttribute(description)}</p>
+${content.map((part, i) => `    <article class="sheet" aria-label="Resume page ${i + 1}">\n${render(part)}\n    </article>`).join('\n')}
   </main>
 </body>
 </html>
 `;
-  fs.mkdirSync(path.dirname(path.join(root, destination)), { recursive: true });
-  fs.writeFileSync(path.join(root, destination), html);
+  fs.mkdirSync(directory, { recursive: true });
+  fs.writeFileSync(path.join(directory, 'index.html'), html);
 }
-build('kevan_resume_master_v1.md', 'index.html', 'letter', '', '### Shopify | Senior Software Engineer');
-build('kevan_resume_agoda_v1.md', 'agoda/index.html', 'a4', '../', '### Shopify | Senior Software Engineer');
-build('kevan_resume_clickup_staff_ai_product.md', 'clickup/index.html', 'letter', '../', '### Shopify | Senior Software Engineer');
-build('kevan_resume_customerio_staff_product_ai.md', 'customerio/index.html', 'letter', '../', '### Shopify | Senior Software Engineer');
-build('kevan_resume_grafana_staff_ai.md', 'grafana/index.html', 'letter', '../', '### Shopify | Senior Software Engineer');
-build('kevan_resume_openai_glen_platform.md', 'openai/index.html', 'letter', '../', '### Developer extensibility platforms');
+pages.forEach(build);

@@ -53,6 +53,12 @@
       }
       if (recent[0]?.role === 'assistant') recent.shift();
       const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: recent }) });
+      if (response.status === 429) {
+        const retryAfter = Number(response.headers.get('Retry-After'));
+        throw new Error(retryAfter > 0
+          ? `Too many requests. Please try again in ${Math.ceil(retryAfter)} seconds.`
+          : 'Too many requests. Please try again later.');
+      }
       if (!response.ok || !response.body) throw new Error('Chat request failed. Please try again.');
       const reader = response.body.getReader(); const decoder = new TextDecoder(); let answer = '';
       while (true) {

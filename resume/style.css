@@ -1,6 +1,7 @@
 /* Physical page geometry is shared by the screen preview and print output. */
 :root { color-scheme: light; }
 * { box-sizing: border-box; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 body { margin: 0; background: #e8ebef; color: #182331; font-family: Georgia, 'Times New Roman', serif; }
 body.paper-letter { --sheet-width: 8.5in; --sheet-height: 11in; }
 body.paper-a4 { --sheet-width: 210mm; --sheet-height: 297mm; }
@@ -11,7 +12,7 @@ body.paper-a4 { --sheet-width: 210mm; --sheet-height: 297mm; }
   box-shadow: 0 3px 18px #1d293922;
   font: 11pt/1.38 Georgia, 'Times New Roman', serif;
 }
-.sheet h1, .sheet h2, .sheet h3, .sheet p, .sheet ul { margin: 0; }
+.sheet h1, .sheet h2, .sheet h3, .sheet p, .sheet ul, .sheet ol { margin: 0; }
 .sheet h1, .sheet h2, .sheet h3 { font-family: Arial, Helvetica, sans-serif; }
 .sheet h1 { font-size: 22pt; line-height: 1.12; font-weight: 700; letter-spacing: -0.03em; color: #142b40; }
 .sheet h1 + p { margin-top: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 10.5pt; color: #34536a; }
@@ -19,11 +20,22 @@ body.paper-a4 { --sheet-width: 210mm; --sheet-height: 297mm; }
 .sheet h2 { margin-top: 13px; margin-bottom: 6px; padding-bottom: 3px; border-bottom: 1px solid #b3bfca; font-size: 10.5pt; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #23445c; }
 .sheet h3 { margin-top: 9px; margin-bottom: 4px; font-size: 10.2pt; font-weight: 700; line-height: 1.25; color: #172c3d; }
 .sheet p + p { margin-top: 5px; }
-.sheet ul { padding-left: 1.15em; list-style: disc; }
+.sheet ul, .sheet ol { padding-left: 1.15em; }
+.sheet ul { list-style: disc; }
+.sheet ol { list-style: decimal; }
 .sheet li { padding-left: 1px; margin-bottom: 4px; }
+.sheet a { color: inherit; text-decoration: underline; text-decoration-thickness: .06em; text-underline-offset: .12em; overflow-wrap: anywhere; }
+.resume-controls a { color: #174c70; }
+@media screen and (max-width: 720px) {
+  body { background: white; }
+  .sheets { display: block; padding: 12px; }
+  .sheet { width: 100%; height: auto; min-height: 0; padding: 24px 18px; box-shadow: none; overflow-wrap: anywhere; }
+  .sheet + .sheet { border-top: 2px solid #d8e0e6; }
+}
 @media print {
   body { background: white; }
+  .resume-controls { display: none !important; }
   .sheets { display: block; padding: 0; }
-  .sheet { box-shadow: none; break-after: page; page-break-after: always; }
+  .sheet { width: var(--sheet-width); height: var(--sheet-height); box-shadow: none; break-after: page; page-break-after: always; }
   .sheet:last-child { break-after: auto; page-break-after: auto; }
 }
