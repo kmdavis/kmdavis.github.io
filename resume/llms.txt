@@ -17,3 +17,4 @@ Kevan Maxwell Davis is a software engineer with 20 years of experience spanning 
 - [Grafana Labs](https://kmdavis.github.io/resume/grafana/index.md): Agent orchestration and developer tooling.
 - [OpenAI](https://kmdavis.github.io/resume/openai/index.md): AI developer platforms and extensible systems.
 - [Hercules](https://kmdavis.github.io/resume/hercules/index.md): AI product experiences, frontend architecture, and developer tools.
+- [Linear](https://kmdavis.github.io/resume/linear/index.md): Applied AI, agent workflows, and developer platforms.

@@ -9,7 +9,7 @@ const root = path.resolve(__dirname, '..');
 const previews = path.join(root, 'previews');
 const pages = [
   { route: '/resume/', dir: 'resume', paper: 'letter' },
-  ...['agoda', 'clickup', 'customerio', 'grafana', 'hercules', 'openai'].map(dir => ({ route: `/resume/${dir}/`, dir: `resume/${dir}`, paper: dir === 'agoda' ? 'a4' : 'letter' }))
+  ...['agoda', 'clickup', 'customerio', 'grafana', 'hercules', 'linear', 'openai'].map(dir => ({ route: `/resume/${dir}/`, dir: `resume/${dir}`, paper: dir === 'agoda' ? 'a4' : 'letter' }))
 ];
 const forbidden = /\b(?:TODO|TBD|lorem ipsum|placeholder)\b/i;
 
@@ -125,7 +125,14 @@ function server() {
           if (!actual.includes(first) || !actual.includes(last)) throw new Error(`${item.route} (${size}) page ${p + 1}: selectable text missing or reading order/content differs; first=${JSON.stringify(first)} last=${JSON.stringify(last)} actual=${JSON.stringify(actual)}`);
         }
         if (/Ask me anything|Send|Message/i.test(extracted.join(' '))) throw new Error(`${item.route} (${size}): chat controls appear in printed PDF`);
-        if (size === item.paper) fs.writeFileSync(path.join(root, item.dir, 'resume.pdf'), pdf);
+        if (size === item.paper) {
+          try {
+            fs.writeFileSync(path.join(root, item.dir, 'resume.pdf'), pdf);
+          } catch (error) {
+            if (error.code !== 'EBUSY' && error.code !== 'EPERM') throw error;
+            errors.push(`${item.route}: resume.pdf is locked; close it and retry`);
+          }
+        }
         await doc.destroy();
       }
       await page.setViewportSize({ width: 390, height: 844 });

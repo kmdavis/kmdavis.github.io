@@ -14,19 +14,18 @@ Staff Software Engineer with 20 years of experience building user-facing commerc
 **Backend & data:** Node.js, Ruby on Rails, REST APIs, PostgreSQL, MySQL, Prisma, Docker, Kubernetes
 
 ## Professional Experience
-### Shopify | Staff Software Engineer | 2021–2026
-- Re-architected **Shopp-E**, an employee-facing multimodal AI product first started by another person, around an isomorphic **TypeScript/Vercel AI SDK** library shared by React web, CLI, and MCP clients; unified integrations across image, video, speech, and music models. Reached **100,000+ generated images** and an estimated **hundreds of daily users**.
+### Shopify | Staff Software Engineer | 2021–November 2026
+- Re-architected **Shopp-E** as an isomorphic **TypeScript/Vercel AI SDK** library shared by React web, CLI, and MCP clients; unified integrations across image, video, speech, and music models. The platform generated **100,000+ images**, with daily generation frequently exceeding **1,000** and sometimes **2,000**.
 - Designed a capability- and cost-aware model registry, resilient provider fallbacks, asynchronous generation flows, and remote polling for multi-minute video jobs, simplifying integration of new model types and providers.
 - Expanded Shopify's extensible UI architecture into the Admin product-detail page, building the initial **Bundles** card and contributing to checkout and first-party Admin experiences; mentored junior engineers and an intern.
+- Prototyped an AI system to update customized merchant email templates, recalling **about 90% success** on a small curated benchmark of five representative template types and five merchant configurations, including translated and heavily customized templates. Later led a **six-engineer** production-development team; project canceled before launch and never shipped or migrated customer templates.
+- Built developer-focused AI experiences, including Pi IDE interaction surfaces (dialogs, prompts, notifications), rich Markdown editing, agent safety controls, and multi-agent review tools.
+- Implemented product-field coverage and inheritance visualizations for multichannel commerce, helping merchants understand how channel-specific mapping rules resolve; prototyped enhancements to bulk editing for a late-2026 launch.
 
 <!-- pagebreak -->
 
 ## Professional Experience (continued)
-- Personally prototyped an AI system to update heavily customized merchant email templates; achieved **90% success on a small curated benchmark** using structured changes, rendered visual comparison, and validation feedback. Served as technical lead for a **six-engineer** production-development team; project canceled before launch.
-- Built developer-focused AI experiences, including Pi IDE interaction surfaces (dialogs, prompts, notifications), rich Markdown editing, agent safety controls, and multi-agent review tools.
-- Implemented product-field coverage and inheritance visualizations for multichannel commerce, helping merchants understand how channel-specific mapping rules resolve; prototyped enhancements to bulk editing for a late-2026 launch.
-
-### Shopify | Senior Software Engineer | 2019–2021
+### Shopify | Senior Software Engineer | May 2019–2021
 - Co-designed and prototyped the **developer API and React-based component model for Checkout UI Extensions**, partnering with a Principal Engineer on sandboxed remote UI integration. Core architectural concepts carried into Shopify's production extensibility platform.
 - Helped integrate B2B commerce capabilities into Shopify after its acquisition of Handshake, contributing to business-customer and payment-terms initiatives.
 - Built first-party post-checkout upsell features; named co-inventor on [Shopify U.S. Patent 11,403,658](https://patents.google.com/patent/US11403658B1/en).
@@ -42,3 +41,4 @@ Mindspark Interactive Networks (Web Developer, 2008–2009); Tyler Technologies 
 
 ## Education
 **University of Texas at Arlington** | Bachelor of Science, Computer Science
+
