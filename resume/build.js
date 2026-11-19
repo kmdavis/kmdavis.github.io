@@ -18,6 +18,7 @@ const pages = [
   { directory: 'grafana', fallback: 'letter', prefix: '../' },
   { directory: 'hercules', fallback: 'letter', prefix: '../' },
   { directory: 'linear', fallback: 'letter', prefix: '../' },
+  { directory: 'netflix', fallback: 'letter', prefix: '../' },
   { directory: 'openai', fallback: 'letter', prefix: '../' },
 ];
 
